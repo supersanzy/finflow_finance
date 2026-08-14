@@ -1,0 +1,796 @@
+Database connection successful.
+Existing emails loaded: 10011
+
+Generating 3 new customers...
+New customers generated: 3
+
+Inserting new customers...
+New customers inserted: 3
+New customer IDs: [10012, 10013, 10014]
+
+New customers retrieved for accounts: 3
+Existing account numbers loaded: 12008
+
+New accounts generated: 4
+Inserting new accounts...
+New accounts inserted: 4
+
+Old active accounts available: 10146
+New accounts available: 4
+Total accounts available for transactions: 10150
+Existing transaction references loaded: 129816
+
+Generating 9 new transactions...
+Base transactions generated: 9
+Inserting base transactions...
+Base transactions inserted: 9
+
+Inserted base transactions retrieved: 9
+Eligible debit transactions for fees: 5
+Fee transactions generated: 3
+Inserting fee transactions...
+Fee transactions inserted: 3
+Database connection successful.
+Existing emails loaded: 10013
+
+Generating 3 new customers...
+New customers generated: 3
+
+Inserting new customers...
+New customers inserted: 3
+New customer IDs: [10015, 10016, 10017]
+
+New customers retrieved for accounts: 3
+Existing account numbers loaded: 12012
+
+New accounts generated: 5
+Inserting new accounts...
+New accounts inserted: 5
+
+Old active accounts available: 10150
+New accounts available: 5
+Total accounts available for transactions: 10155
+Existing transaction references loaded: 129828
+
+Generating 7 new transactions...
+Base transactions generated: 7
+Inserting base transactions...
+Base transactions inserted: 7
+
+Inserted base transactions retrieved: 7
+Eligible debit transactions for fees: 4
+Fee transactions generated: 3
+Inserting fee transactions...
+Fee transactions inserted: 3
+Database connection successful.
+Existing emails loaded: 10016
+
+Generating 2 new customers...
+New customers generated: 2
+
+Inserting new customers...
+New customers inserted: 2
+New customer IDs: [10018, 10019]
+
+New customers retrieved for accounts: 2
+Existing account numbers loaded: 12017
+
+New accounts generated: 4
+Inserting new accounts...
+New accounts inserted: 4
+
+Old active accounts available: 10154
+New accounts available: 4
+Total accounts available for transactions: 10158
+Existing transaction references loaded: 129838
+
+Generating 9 new transactions...
+Base transactions generated: 9
+Inserting base transactions...
+Base transactions inserted: 9
+
+Inserted base transactions retrieved: 9
+Eligible debit transactions for fees: 2
+Fee transactions generated: 2
+Inserting fee transactions...
+Fee transactions inserted: 2
+Database connection successful.
+Existing emails loaded: 10018
+
+Generating 3 new customers...
+New customers generated: 3
+
+Inserting new customers...
+New customers inserted: 3
+New customer IDs: [10020, 10021, 10022]
+
+New customers retrieved for accounts: 3
+Existing account numbers loaded: 12021
+
+New accounts generated: 3
+Inserting new accounts...
+New accounts inserted: 3
+
+Old active accounts available: 10158
+New accounts available: 3
+Total accounts available for transactions: 10161
+Existing transaction references loaded: 129849
+
+Generating 6 new transactions...
+Base transactions generated: 6
+Inserting base transactions...
+Base transactions inserted: 6
+
+Inserted base transactions retrieved: 6
+Eligible debit transactions for fees: 1
+Fee transactions generated: 1
+Inserting fee transactions...
+Fee transactions inserted: 1
+Database connection successful.
+Existing emails loaded: 10021
+
+Generating 3 new customers...
+New customers generated: 3
+
+Inserting new customers...
+New customers inserted: 3
+New customer IDs: [10023, 10024, 10025]
+
+New customers retrieved for accounts: 3
+Existing account numbers loaded: 12024
+
+New accounts generated: 4
+Inserting new accounts...
+New accounts inserted: 4
+
+Old active accounts available: 10160
+New accounts available: 4
+Total accounts available for transactions: 10164
+Existing transaction references loaded: 129856
+
+Generating 10 new transactions...
+Base transactions generated: 10
+Inserting base transactions...
+Base transactions inserted: 10
+
+Inserted base transactions retrieved: 11
+Eligible debit transactions for fees: 6
+Fee transactions generated: 5
+Inserting fee transactions...
+Fee transactions inserted: 5
+Database connection successful.
+Existing emails loaded: 10024
+
+Generating 3 new customers...
+New customers generated: 3
+
+Inserting new customers...
+New customers inserted: 3
+New customer IDs: [10026, 10027, 10028]
+
+New customers retrieved for accounts: 3
+Existing account numbers loaded: 12028
+
+New accounts generated: 5
+Inserting new accounts...
+New accounts inserted: 5
+
+Old active accounts available: 10163
+New accounts available: 5
+Total accounts available for transactions: 10168
+Existing transaction references loaded: 129870
+
+Generating 5 new transactions...
+Base transactions generated: 5
+Inserting base transactions...
+Base transactions inserted: 5
+
+Inserted base transactions retrieved: 5
+Eligible debit transactions for fees: 3
+Fee transactions generated: 2
+Inserting fee transactions...
+Fee transactions inserted: 2
+Database connection successful.
+Existing emails loaded: 10027
+
+Generating 2 new customers...
+New customers generated: 2
+
+Inserting new customers...
+New customers inserted: 2
+New customer IDs: [10029, 10030]
+
+New customers retrieved for accounts: 2
+Existing account numbers loaded: 12033
+
+New accounts generated: 2
+Inserting new accounts...
+New accounts inserted: 2
+
+Old active accounts available: 10168
+New accounts available: 2
+Total accounts available for transactions: 10170
+Existing transaction references loaded: 129877
+
+Generating 8 new transactions...
+Base transactions generated: 8
+Inserting base transactions...
+Base transactions inserted: 8
+
+Inserted base transactions retrieved: 9
+Eligible debit transactions for fees: 5
+Fee transactions generated: 4
+Inserting fee transactions...
+Fee transactions inserted: 4
+Database connection successful.
+Existing emails loaded: 10029
+
+Generating 2 new customers...
+New customers generated: 2
+
+Inserting new customers...
+New customers inserted: 2
+New customer IDs: [10031, 10032]
+
+New customers retrieved for accounts: 2
+Existing account numbers loaded: 12035
+
+New accounts generated: 3
+Inserting new accounts...
+New accounts inserted: 3
+
+Old active accounts available: 10170
+New accounts available: 3
+Total accounts available for transactions: 10173
+Existing transaction references loaded: 129888
+
+Generating 7 new transactions...
+Base transactions generated: 7
+Inserting base transactions...
+Base transactions inserted: 7
+
+Inserted base transactions retrieved: 7
+Eligible debit transactions for fees: 3
+Fee transactions generated: 2
+Inserting fee transactions...
+Fee transactions inserted: 2
+Database connection successful.
+Existing emails loaded: 10031
+
+Generating 3 new customers...
+New customers generated: 3
+
+Inserting new customers...
+New customers inserted: 3
+New customer IDs: [10033, 10034, 10035]
+
+New customers retrieved for accounts: 3
+Existing account numbers loaded: 12038
+
+New accounts generated: 5
+Inserting new accounts...
+New accounts inserted: 5
+
+Old active accounts available: 10172
+New accounts available: 5
+Total accounts available for transactions: 10177
+Existing transaction references loaded: 129897
+
+Generating 7 new transactions...
+Base transactions generated: 7
+Inserting base transactions...
+Base transactions inserted: 7
+
+Inserted base transactions retrieved: 8
+Eligible debit transactions for fees: 2
+Fee transactions generated: 0
+No eligible fee transactions generated this run.
+Database connection successful.
+Existing emails loaded: 10033
+
+Generating 2 new customers...
+New customers generated: 2
+
+Inserting new customers...
+New customers inserted: 2
+New customer IDs: [10036, 10037]
+
+New customers retrieved for accounts: 2
+Existing account numbers loaded: 12043
+
+New accounts generated: 3
+Inserting new accounts...
+New accounts inserted: 3
+
+Old active accounts available: 10175
+New accounts available: 3
+Total accounts available for transactions: 10178
+Existing transaction references loaded: 129903
+
+Generating 9 new transactions...
+Base transactions generated: 9
+Inserting base transactions...
+Base transactions inserted: 9
+
+Inserted base transactions retrieved: 10
+Eligible debit transactions for fees: 6
+Fee transactions generated: 5
+Inserting fee transactions...
+Fee transactions inserted: 5
+Database connection successful.
+Existing emails loaded: 10035
+
+Generating 2 new customers...
+New customers generated: 2
+
+Inserting new customers...
+New customers inserted: 2
+New customer IDs: [10038, 10039]
+
+New customers retrieved for accounts: 2
+Existing account numbers loaded: 12046
+
+New accounts generated: 4
+Inserting new accounts...
+New accounts inserted: 4
+
+Old active accounts available: 10178
+New accounts available: 4
+Total accounts available for transactions: 10182
+Existing transaction references loaded: 129916
+
+Generating 10 new transactions...
+Base transactions generated: 10
+Inserting base transactions...
+Base transactions inserted: 10
+
+Inserted base transactions retrieved: 11
+Eligible debit transactions for fees: 6
+Fee transactions generated: 5
+Inserting fee transactions...
+Fee transactions inserted: 5
+Database connection successful.
+Existing emails loaded: 10037
+
+Generating 3 new customers...
+New customers generated: 3
+
+Inserting new customers...
+New customers inserted: 3
+New customer IDs: [10040, 10041, 10042]
+
+New customers retrieved for accounts: 3
+Existing account numbers loaded: 12050
+
+New accounts generated: 5
+Inserting new accounts...
+New accounts inserted: 5
+
+Old active accounts available: 10182
+New accounts available: 5
+Total accounts available for transactions: 10187
+Existing transaction references loaded: 129930
+
+Generating 10 new transactions...
+Base transactions generated: 10
+Inserting base transactions...
+Base transactions inserted: 10
+
+Inserted base transactions retrieved: 10
+Eligible debit transactions for fees: 6
+Fee transactions generated: 5
+Inserting fee transactions...
+Fee transactions inserted: 5
+Database connection successful.
+Existing emails loaded: 10040
+
+Generating 2 new customers...
+New customers generated: 2
+
+Inserting new customers...
+New customers inserted: 2
+New customer IDs: [10043, 10044]
+
+New customers retrieved for accounts: 2
+Existing account numbers loaded: 12055
+
+New accounts generated: 2
+Inserting new accounts...
+New accounts inserted: 2
+
+Old active accounts available: 10186
+New accounts available: 2
+Total accounts available for transactions: 10188
+Existing transaction references loaded: 129945
+
+Generating 10 new transactions...
+Base transactions generated: 10
+Inserting base transactions...
+Base transactions inserted: 10
+
+Inserted base transactions retrieved: 10
+Eligible debit transactions for fees: 7
+Fee transactions generated: 5
+Inserting fee transactions...
+Fee transactions inserted: 5
+Database connection successful.
+Existing emails loaded: 10042
+
+Generating 3 new customers...
+New customers generated: 3
+
+Inserting new customers...
+New customers inserted: 3
+New customer IDs: [10045, 10046, 10047]
+
+New customers retrieved for accounts: 3
+Existing account numbers loaded: 12057
+
+New accounts generated: 4
+Inserting new accounts...
+New accounts inserted: 4
+
+Old active accounts available: 10188
+New accounts available: 4
+Total accounts available for transactions: 10192
+Existing transaction references loaded: 129960
+
+Generating 7 new transactions...
+Base transactions generated: 7
+Inserting base transactions...
+Base transactions inserted: 7
+
+Inserted base transactions retrieved: 8
+Eligible debit transactions for fees: 3
+Fee transactions generated: 3
+Inserting fee transactions...
+Fee transactions inserted: 3
+Database connection successful.
+Existing emails loaded: 10045
+
+Generating 3 new customers...
+New customers generated: 3
+
+Inserting new customers...
+New customers inserted: 3
+New customer IDs: [10048, 10049, 10050]
+
+New customers retrieved for accounts: 3
+Existing account numbers loaded: 12061
+
+New accounts generated: 6
+Inserting new accounts...
+New accounts inserted: 6
+
+Old active accounts available: 10191
+New accounts available: 6
+Total accounts available for transactions: 10197
+Existing transaction references loaded: 129969
+
+Generating 7 new transactions...
+Base transactions generated: 7
+Inserting base transactions...
+Base transactions inserted: 7
+
+Inserted base transactions retrieved: 8
+Eligible debit transactions for fees: 5
+Fee transactions generated: 3
+Inserting fee transactions...
+Fee transactions inserted: 3
+Database connection successful.
+Existing emails loaded: 10048
+
+Generating 2 new customers...
+New customers generated: 2
+
+Inserting new customers...
+New customers inserted: 2
+New customer IDs: [10051, 10052]
+
+New customers retrieved for accounts: 2
+Existing account numbers loaded: 12067
+
+New accounts generated: 3
+Inserting new accounts...
+New accounts inserted: 3
+
+Old active accounts available: 10194
+New accounts available: 3
+Total accounts available for transactions: 10197
+Existing transaction references loaded: 129978
+
+Generating 6 new transactions...
+Base transactions generated: 6
+Inserting base transactions...
+Base transactions inserted: 6
+
+Inserted base transactions retrieved: 6
+Eligible debit transactions for fees: 3
+Fee transactions generated: 1
+Inserting fee transactions...
+Fee transactions inserted: 1
+Database connection successful.
+Existing emails loaded: 10050
+
+Generating 2 new customers...
+New customers generated: 2
+
+Inserting new customers...
+New customers inserted: 2
+New customer IDs: [10053, 10054]
+
+New customers retrieved for accounts: 2
+Existing account numbers loaded: 12070
+
+New accounts generated: 3
+Inserting new accounts...
+New accounts inserted: 3
+
+Old active accounts available: 10196
+New accounts available: 3
+Total accounts available for transactions: 10199
+Existing transaction references loaded: 129985
+
+Generating 10 new transactions...
+Base transactions generated: 10
+Inserting base transactions...
+Base transactions inserted: 10
+
+Inserted base transactions retrieved: 10
+Eligible debit transactions for fees: 2
+Fee transactions generated: 0
+No eligible fee transactions generated this run.
+Database connection successful.
+Existing emails loaded: 10052
+
+Generating 2 new customers...
+New customers generated: 2
+
+Inserting new customers...
+New customers inserted: 2
+New customer IDs: [10055, 10056]
+
+New customers retrieved for accounts: 2
+Existing account numbers loaded: 12073
+
+New accounts generated: 2
+Inserting new accounts...
+New accounts inserted: 2
+
+Old active accounts available: 10199
+New accounts available: 2
+Total accounts available for transactions: 10201
+Existing transaction references loaded: 129995
+
+Generating 7 new transactions...
+Base transactions generated: 7
+Inserting base transactions...
+Base transactions inserted: 7
+
+Inserted base transactions retrieved: 9
+Eligible debit transactions for fees: 7
+Fee transactions generated: 6
+Inserting fee transactions...
+Fee transactions inserted: 6
+Database connection successful.
+Existing emails loaded: 10054
+
+Generating 3 new customers...
+New customers generated: 3
+
+Inserting new customers...
+New customers inserted: 3
+New customer IDs: [10057, 10058, 10059]
+
+New customers retrieved for accounts: 3
+Existing account numbers loaded: 12075
+
+New accounts generated: 5
+Inserting new accounts...
+New accounts inserted: 5
+
+Old active accounts available: 10200
+New accounts available: 5
+Total accounts available for transactions: 10205
+Existing transaction references loaded: 130006
+
+Generating 10 new transactions...
+Base transactions generated: 10
+Inserting base transactions...
+Base transactions inserted: 10
+
+Inserted base transactions retrieved: 10
+Eligible debit transactions for fees: 5
+Fee transactions generated: 3
+Inserting fee transactions...
+Fee transactions inserted: 3
+Database connection successful.
+Existing emails loaded: 10056
+
+Generating 3 new customers...
+New customers generated: 3
+
+Inserting new customers...
+New customers inserted: 3
+New customer IDs: [10060, 10061, 10062]
+
+New customers retrieved for accounts: 3
+Existing account numbers loaded: 12080
+
+New accounts generated: 5
+Inserting new accounts...
+New accounts inserted: 5
+
+Old active accounts available: 10203
+New accounts available: 5
+Total accounts available for transactions: 10208
+Existing transaction references loaded: 130019
+
+Generating 9 new transactions...
+Base transactions generated: 9
+Inserting base transactions...
+Base transactions inserted: 9
+
+Inserted base transactions retrieved: 9
+Eligible debit transactions for fees: 1
+Fee transactions generated: 1
+Inserting fee transactions...
+Fee transactions inserted: 1
+Database connection successful.
+Existing emails loaded: 10059
+
+Generating 3 new customers...
+New customers generated: 3
+
+Inserting new customers...
+New customers inserted: 3
+New customer IDs: [10063, 10064, 10065]
+
+New customers retrieved for accounts: 3
+Existing account numbers loaded: 12085
+
+New accounts generated: 5
+Inserting new accounts...
+New accounts inserted: 5
+
+Old active accounts available: 10208
+New accounts available: 5
+Total accounts available for transactions: 10213
+Existing transaction references loaded: 130029
+
+Generating 5 new transactions...
+Base transactions generated: 5
+Inserting base transactions...
+Base transactions inserted: 5
+
+Inserted base transactions retrieved: 5
+Eligible debit transactions for fees: 1
+Fee transactions generated: 0
+No eligible fee transactions generated this run.
+Database connection successful.
+Existing emails loaded: 10062
+
+Generating 2 new customers...
+New customers generated: 2
+
+Inserting new customers...
+New customers inserted: 2
+New customer IDs: [10066, 10067]
+
+New customers retrieved for accounts: 2
+Existing account numbers loaded: 12090
+
+New accounts generated: 3
+Inserting new accounts...
+New accounts inserted: 3
+
+Old active accounts available: 10213
+New accounts available: 3
+Total accounts available for transactions: 10216
+Existing transaction references loaded: 130034
+
+Generating 7 new transactions...
+Base transactions generated: 7
+Inserting base transactions...
+Base transactions inserted: 7
+
+Inserted base transactions retrieved: 7
+Eligible debit transactions for fees: 4
+Fee transactions generated: 1
+Inserting fee transactions...
+Fee transactions inserted: 1
+Database connection successful.
+Existing emails loaded: 10064
+
+Generating 2 new customers...
+New customers generated: 2
+
+Inserting new customers...
+New customers inserted: 2
+New customer IDs: [10068, 10069]
+
+New customers retrieved for accounts: 2
+Existing account numbers loaded: 12093
+
+New accounts generated: 3
+Inserting new accounts...
+New accounts inserted: 3
+
+Old active accounts available: 10216
+New accounts available: 3
+Total accounts available for transactions: 10219
+Existing transaction references loaded: 130042
+
+Generating 6 new transactions...
+Base transactions generated: 6
+Inserting base transactions...
+Base transactions inserted: 6
+
+Inserted base transactions retrieved: 6
+Eligible debit transactions for fees: 2
+Fee transactions generated: 0
+No eligible fee transactions generated this run.
+Database connection successful.
+Existing emails loaded: 10066
+
+Generating 3 new customers...
+New customers generated: 3
+
+Inserting new customers...
+New customers inserted: 3
+New customer IDs: [10070, 10071, 10072]
+
+New customers retrieved for accounts: 3
+Existing account numbers loaded: 12096
+
+New accounts generated: 3
+Inserting new accounts...
+New accounts inserted: 3
+
+Old active accounts available: 10219
+New accounts available: 3
+Total accounts available for transactions: 10222
+Existing transaction references loaded: 130048
+
+Generating 7 new transactions...
+Base transactions generated: 7
+Inserting base transactions...
+Base transactions inserted: 7
+
+Inserted base transactions retrieved: 9
+Eligible debit transactions for fees: 6
+Fee transactions generated: 4
+Inserting fee transactions...
+Fee transactions inserted: 4
+Database connection successful.
+Existing emails loaded: 10069
+
+Generating 3 new customers...
+New customers generated: 3
+
+Inserting new customers...
+New customers inserted: 3
+New customer IDs: [10073, 10074, 10075]
+
+New customers retrieved for accounts: 3
+Existing account numbers loaded: 12099
+
+New accounts generated: 6
+Inserting new accounts...
+New accounts inserted: 6
+
+Old active accounts available: 10222
+New accounts available: 6
+Total accounts available for transactions: 10228
+Existing transaction references loaded: 130057
+
+Generating 5 new transactions...
+Base transactions generated: 5
+Inserting base transactions...
+Base transactions inserted: 5
+
+Inserted base transactions retrieved: 6
+Eligible debit transactions for fees: 3
+Fee transactions generated: 2
+Inserting fee transactions...
+Fee transactions inserted: 2
