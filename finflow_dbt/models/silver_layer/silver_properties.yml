@@ -1,0 +1,1042 @@
+models:
+  - name: silver_customers
+    description: >
+       Contains cleansed and standardized customer records derived from the bronze layer. 
+        Text attributes are normalized and the model provides a consistent customer dataset for downstream dimensional.
+
+    data_tests:
+      - date_before_date:
+          description: Ensures that a customer's date of birth is before the account creation date.
+          earlier_column: date_of_birth
+          later_column: created_at
+
+    columns:
+      - name: customer_id
+        description: One row per customer.
+        data_tests:
+          - not_null:
+              description: Ensures that every customer has a unique identifier.
+              config:
+                severity: error
+
+          - unique:
+              description: Ensures that every customer id is unique.
+              config:
+                severity: error
+
+      - name: first_name
+        description: >
+          First name of the customer after trimming whitespace and standardizing formatting.
+          This column is the value corresponding to first_name column from bronze layer. 
+        data_tests: 
+          - not_null:
+              description: Validates that customer must have a first name.
+              config:
+                severity: error
+
+      - name: last_name
+        description: >
+          Last name of the customer after trimming whitespace and standardizing formatting.
+          This column is the value corresponding to last_name column from bronze layer.
+        data_tests:
+          - not_null:
+              description: Validates that customer must have a last name.
+              config:
+                severity: error
+
+      - name: email
+        description: Standardized and whitespace trimming of the customers email to provide accuracy.
+        data_tests:
+          - not_null:
+              description: Prevents any null email value.
+              config:
+                severity: error
+
+          - unique:
+              description: Validates that every email is unique.
+              config:
+                severity: error
+
+      - name: phone_number
+        data_tests:
+          - not_null: 
+              description: Ensures that every customer has a phone number.
+              config:
+                severity: error
+
+          - unique:
+              description: Ensures that phone numbers are unique.
+              config:
+                severity: error
+
+      - name: date_of_birth
+        description: Casts column to date to provide date accuracy.
+        data_tests:
+          - not_null:
+              description: Guarantees that each customer has a date of birth.
+              config:
+                severity: error
+
+          
+
+      - name: gender
+        description: Trims white spaces and provides standardized formatting.
+        data_tests:
+          - not_null:
+              description: Ensure that each customer provides their gender values.
+              config:
+                severity: warn
+          - accepted_values:
+              arguments:
+                values: ['Male', 'Female']
+
+      - name: country
+        description: Trims white spaces and provides standardized formatting.
+        data_tests:
+          - not_null:
+              description: Ensures that countries are not null.
+              config:
+                severity: error
+
+          - accepted_values:
+              description: Validates the accepted business values.
+              arguments:
+                values: ['Nigeria']
+              config:
+                severity: error
+
+      - name: state
+        description: Trims white spaces and provides standardized formatting.
+        data_tests:
+          - not_null:
+              description: Ensures that state is not null.
+              config:
+                severity: error
+
+      - name: city
+        description: Trims white spaces and provides standardized formatting.
+        data_tests:
+          - not_null:
+              description: Ensures that city is not null.
+              config:
+                severity: error
+
+      - name: address
+        description: Trims white spaces and provides standardized formatting.
+        data_tests:
+          - not_null:
+              description: Ensures each customer has an address.
+              config:
+                severity: error
+
+      - name: customer_status
+        description: Trims white spaces and provides standardized formatting.
+        data_tests:
+          - not_null:
+              description: Detects null customer status.
+              config:
+                severity: error
+          - accepted_values:
+              description: Ensures that the column contains only approved business values.
+              arguments:
+                values: ['Active', 'Inactive', 'Suspended']
+              config:
+                severity: error
+
+      - name: created_at
+        description: The date and time when each customer account was created.
+        data_tests:
+          - not_null:
+              description: Ensures that each row has a created date and time.
+              config:
+                severity: error
+            
+      - name: updated_at
+        description: The date and time when a customer details were updated in a database.
+        data_tests:
+          - not_null:
+              description: Validates that no nulls were allowed.
+              config:
+                severity: error
+
+
+  - name: silver_accounts
+    description: Contains cleansed and standardized account records derived from the bronze layer. 
+
+    columns:
+      - name: account_id
+        description: One row per account.
+        data_tests:
+          - not_null:
+              description: Ensures all rows has a unique identifier.
+              config:
+                severity: error
+                
+          - unique:
+              description: Ensures that all account id are unique.
+              config:
+                severity: error
+
+      - name: customer_id
+        data_tests:
+          - not_null:
+              description: Ensures every account belongs to a customer id. 
+              config:
+                severity: error
+
+          - unique:
+              description: Ensures every account is unique to a customer id.
+              config:
+                severity: error
+
+          - relationships:
+              arguments:
+                to: ref('silver_customers')
+                field: customer_id
+              description: >
+                Validates the relationship integrity between customer_id in the silver_customers table 
+                and customer_id in the silver_accounts table
+
+      - name: account_number
+        data_tests:
+          - not_null:
+              description: Ensures account number doesn't have null row(s).
+              config:
+                severity: error
+
+          - unique:
+              description: Validates uniqueness. 
+              config:
+                severity: error
+
+      - name: account_type
+        description: Trims white spaces and provides standardized formatting.
+        data_tests:
+          - not_null:
+              description: Validates that account type is not null.
+              config:
+                severity: error
+
+          - accepted_values:
+              arguments:
+                values: ['Current', 'Savings']
+              description: Validates that column contains only approved business values.
+              config:
+                severity: error
+
+      - name: currency
+        data_tests:
+          - not_null:
+              description: Confirms that currency column is not empty. 
+              config:
+                severity: warn
+
+          - accepted_values:
+              arguments:
+                values: ['NGN']
+              description: Ensures the accepted business values are met.
+              config:
+                severity: warn
+
+      - name: balance
+        data_tests:
+          - not_null:
+              description: Validates non-empty rows in this column.
+              config:
+                severity: error
+
+      - name: account_status
+        description: Trims white spaces and provides standardized formatting.
+        data_tests: 
+          - not_null:
+              description: Ensures that each account has an account status.
+              config:
+                severity: error
+
+          - accepted_values:
+              arguments:
+                values: ['Active', 'Dormant', 'Closed']
+              description: Validates that the column contains only approved business values.
+              config:
+                severity: error
+
+      - name: opened_at
+        data_tests: 
+          - not_null: 
+              description: Confirms that all account must contain a date and time it was opened.
+              config: 
+                severity: error
+
+      - name: closed_at
+        data_tests:
+          - not_null:
+              description: Ensures the time it was inserted in the operational source was captured.
+              config:
+                severity: error
+
+  - name: silver_beneficiaries
+    description: Contains cleansed and standardized beneficiary records derived from the bronze layer.
+
+    columns:
+      - name: beneficiary_id
+        description: One row per account.
+        data_tests:
+          - not_null:
+              description: Ensures all rows has a unique identifier.
+              config:
+                severity: error
+
+          - unique:
+              description: Ensures that all beneficiary id are unique.
+              config:
+                severity: error
+
+      - name: customer_id
+        description: Each customer that has a beneficiary.
+        data_tests:
+          - not_null:
+              description: Validates that a beneficiary id that exists has a customer id linked to it.
+              config: 
+                severity: error
+
+          - relationships:
+              arguments:
+                to: ref('silver_customers')
+                field: customer_id
+              description: >
+                Validates that a beneficary_id in this model has a relationshipwith a customer_id in the silver_customers model.
+
+      - name: beneficiary_name
+        description: Full name of the beneficiary after standardized formatting.
+        data_tests:
+          - not_null:
+              description: Validates that names are provided.
+              config:
+                severity: error
+
+      - name: beneficiary_account
+        data_tests:
+          - not_null:
+              description: Ensures that each beneficiary has an account.
+              config:
+                severity: error
+
+          - unique:
+              description: Confirms that one account uniquely belongs to one beneficiary.
+              config:
+                severity: error
+
+      - name: bank_name
+        description: Trim whitespaces and provides standardized formatting.
+        data_tests:
+          - not_null:
+              description: Validates that bank name is not null.
+              config:
+                severity: error
+
+      - name: status
+        description: Trim whitespaces and provides standardized formatting.
+        data_tests:
+          - not_null:
+              description: Validates that beneficiary account status is provided.
+              config:
+                severity: error
+
+          - accepted_values:
+              description: Vaidates the approved business values.
+              arguments:
+                values: ['Active', 'Inactive']
+
+      - name: created_at
+        data_tests:
+          - not_null:
+              description: >
+                Ensure that the date when a customer saved an account as a beneficiary is captured.
+              config:
+                severity: error
+
+
+  - name: silver_transactions
+    description: Stores all the transaction movement.
+  
+    
+    columns:
+      - name: transaction_id
+        description: One row per transaction.
+        data_tests:
+          - not_null:
+              description: Ensures that transaction id is not null.
+              config:
+                severity: error
+
+          - unique:
+              description: Ensures that each transaction row has a unique identifier.
+              config:
+                severity: error
+
+                
+      - name: account_id
+        description: placeholder
+        data_tests:
+          - not_null:
+              description: Ensures every transaction event recorded has an associated account.
+              config:
+                severity: error
+
+          - relationships:
+              arguments:
+                to: ref('silver_accounts')
+                field: account_id
+              description: >
+                Validates the relationship integrity of transaction account_id of this model
+                with account_id in silver_accounts model
+
+      - name: transaction_reference
+        data_tests:
+          - not_null:
+              description: Validates that no empty row(s) for reference purposes.
+              config:
+                severity: error
+
+          - unique:
+              description: Guarantees that transaction reference is always unique.
+              config:
+                severity: error
+
+      - name: transaction_type
+        description: Trim whitspaces and provided standardized formatting.
+        data_tests:
+          - not_null:
+              description: Ensures that a transaction has a transaction type.
+              config:
+                severity: error
+
+          - accepted_values:
+              description: Validates that transaction type contains only approved business values.
+              arguments:
+                values: ['Reversal', 'Transfer', 'Bill Payment', 'Withdrawal', 'Fee', 'Card Payment', 'Deposit', 'Loan Payment']
+              config:
+                severity: error
+
+      - name: transaction_status
+        description: Trim whitspaces and provided standardized formatting.
+        data_tests:
+          - not_null:
+              description: Validates that every transaction has a transaction status to aid tracking.
+              config:
+                severity: error
+
+          - accepted_values:
+              description: Guarantees that this column contains only approved business values.
+              arguments:
+                values: ['Pending', 'Processing', 'Completed', 'Reversed']
+              config:
+                severity: error
+
+      - name: transaction_direction
+        description: Trim whitspaces and provided standardized formatting.
+        data_tests:
+          - not_null:
+              description: Ensures that transaction direction cannot be null.
+              config:
+                severity: error
+          - accepted_values:
+              description: Ensures that the column contains only approved business values.
+              arguments:
+                values: ['Credit', 'Debit']
+              config:
+                severity: error
+
+      - name: amount
+        description: The amount involved in the transaction event.
+        data_tests:
+          - not_null:
+              description: Ensures that amount transacted is captured.
+              config: 
+                severity: error
+
+      - name: currency
+        data_tests:
+          - not_null:
+              description: Confirms that the currency column is not null
+              config:
+                severity: warn
+
+      - name: transaction_channel
+        description: Trim whitspaces and provided standardized formatting.
+        data_tests:
+          - not_null:
+              description: Ensures transaction channel is provided.
+              config:
+                severity: error
+
+          - accepted_values:
+              description: Validates approved business values.
+              arguments:
+                values: ['Credit', 'Debit']
+              config:
+                severity: error
+
+      - name: description
+        data_tests:
+          - not_null:
+              description: Ensures that transaction purposes are provided.
+              config:
+                severity: warn
+
+      - name: original_transaction_id
+        description: >
+          This ID indicates that the transaction type is a reversed type. 
+          It references the transaction id column that the transaction was initiated from.
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('silver_transactions')
+                field: transaction_id
+
+      - name: fee_for_transaction_id
+        description: >
+          ID of transactions that have it's fees debited. This reference the transaction id. 
+          The transaction type is a FEE and the transaction direction is always debit.
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('silver_transactions')
+                field: transaction_id
+
+      - name: transaction_at
+        data_tests:
+          - not_null:
+              description: Validates that date and time of a transaction event is recorded.
+              config:
+                severity: error
+
+      - name: created_at
+        data_tests:
+          - not_null:
+              description: >
+                Validates that date and time of a transaction event is recorded in the operational system.
+              config:
+                severity: error
+
+  - name: silver_transfers
+    description: Contains standardized formatting.
+
+    columns:
+      - name: transfer_id
+        description: One transfer id per row.
+        data_tests:
+          - not_null:
+              description: Ensure that every transfer event has a transfer id.
+              config:
+                severity: error
+
+          - unique:
+              description: Validates that transfer id are unique.
+              config:
+                severity: error
+
+      - name: transfer_reference
+        data_tests:
+          - not_null:
+              description: Ensures that no null row(s).
+              config:
+                severity: error
+
+          - unique:
+              description: Validates that the column is unique.
+              config:
+                severity: error
+
+      - name: sender_transaction_id
+        data_tests:
+          - not_null:
+              description: Validates that a transfer events must have an initiator.
+              config:
+                severity: error
+
+          - relationships:
+              arguments:
+                to: ref('siver_transactions')
+                field: transaction_id
+
+      - name: receiver_transaction_id
+        description: Captures the receivers transaction id.
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('siver_transactions')
+                field: transaction_id
+
+      - name: beneficiary_id
+        description: Captures the beneficiary id.
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('silver_beneficiaries')
+                field: beneficiary_id
+
+      - name: transfer_method
+        data_tests:
+          - not_null:
+              description: Validates that transfer methods are provided.
+              config:
+                severity: warn
+
+      - name: transfer_purpose
+        data_tests:
+          - not_null:
+              description: Ensures that transfer events has a purpose.
+              config:
+                severity: warn
+
+      - name: created_at
+        data_tests:
+          - not_null:
+              description: Date and time of transfer event are recorded.
+              config:
+                severity: error
+
+  - name: silver_cards
+    description: Contains cleansed and standardized card records derived from the bronze layer.
+
+    columns:
+      - name: card_id
+        description: One row per card.
+        data_tests:
+          - not_null:
+              description: Validates that no row(s) are not empty.
+              config:
+                severity: error
+
+          - unique:
+              description: Ensures every card is unique.
+              config:
+                severity: error
+
+      - name: customer_id
+        data_tests:
+          - not_null:
+              description: Ensures that only customer(s) that has cards are recorded.
+              config:
+                severity: error
+
+          - unique:
+              description: Validates that a card uniquely belongs to a customer.
+              config:
+                severity: error
+
+          - relationships:
+              arguments:
+                to: ref('silver_customers')
+                field: customer_id
+
+      - name: account_id
+        data_tests:
+          - not_null:
+              description: >
+                Valdates that a card associated an account id can't be null
+              config:
+                severity: error
+
+          - unique:
+              description: Ensures that a card uniquely belongs to one account.
+              config:
+                severity: error
+
+          - relationships:
+              arguments:
+                to: ref('silver_accounts')
+                field: account_id
+
+      - name: card_number
+        data_tests: 
+          - not_null:
+              description: Ensures a card has a card number.
+              config:
+                severity: error
+
+          - unique:
+              description: Validates that card number is unique.
+              config:
+                severity: error
+
+      - name: card_type
+        description: Trim whitespaces and ensures standardized formatting.
+        data_tests: 
+          - not_null:
+              description: Guarantees that card type is captured.
+              config:
+                severity: error
+
+          - accepted_values:
+              arguments:
+                values: ['Debit', 'Credit']
+
+      - name: card_status
+        description: Trim whitespaces and ensures standardized formatting.
+        data_tests:
+          - not_null:
+              description: Ensures that card status are provided.
+              config:
+                severity: error
+
+          - accepted_values:
+              arguments:
+                values: ['Inactive', 'Active']
+              description: Validates approved business values.
+                
+
+      - name: issued_at
+        data_tests:
+          - not_null:
+              description: Confirms that date and time each card are issued are recorded.
+              config:
+                severity: error
+
+      - name: expires_at
+        data_tests:
+          - not_null:
+              description: Validates that expiry date of a card is recorded.
+              config:
+                severity: error
+
+
+  - name: silver_card_transactions
+    description: Contains cleansed and standardized card transaction records derived from the bronze layer.
+
+    columns:
+      - name: card_transaction_id
+        description: One row per card transaction.
+        data_tests:
+          - not_null:
+              description: Validates that card transaction id is not null.
+              config:
+                severity: error
+
+          - unique:
+              description:  Ensures that each card transaction row has a unique identifier.
+              config:
+                severity: error
+
+      - name: card_id
+        data_tests:
+          - not_null:
+              description: Ensures that card transactions initaited with cards is not null.
+              config:
+                severity: error
+
+          - relationships:
+              arguments:
+                to: ref('silver_cards')
+                field: card_id
+
+      - name: transaction_id
+        data_tests:
+          - not_null:
+              description: Ensures no null row(s).
+              config:
+                severity: error
+          
+          - unique:
+              description: Validates that transactions are unique.
+              config:
+                severity: error
+
+          - relationships:
+              arguments:
+                to: ref('silver_transactions')
+                field: transaction_id
+
+      - name: merchant_name
+        data_tests: 
+          - not_null:
+              description: Prevents empty row(s).
+              config:
+                severity: error
+
+      - name: merchant_category
+        description: Trim whitespaces and ensures standardized formatting.
+        data_tests:
+          - not_null:
+              description: Prevents empty row(s).
+              config: 
+                severity: warn
+
+      - name: transaction_at
+        data_tests:
+          - not_null:
+              description: Confirms that card transaction event are recorded.
+              config:
+                severity: error
+
+      - name: created_at
+        data_tests:
+          - not_null:
+              description: Confirms that card transaction event are recorded in the operational system.
+              config:
+                severity: error
+
+          
+  - name: silver_loans
+    description: Contains cleansed and standardized loan records derived from the bronze layer.
+
+    columns:
+      - name: loan_id
+        description: One row per loan.
+        data_tests:
+          - not_null: 
+              description: Ensures loan id is not null.
+              config:
+                severity: error
+
+          - unique:
+              description: Confirms that each loan id is unique.
+              config:
+                severity: error
+
+      - name: customer_id
+        data_tests:
+          - not_null: 
+              description: Validates that a loan is associated with a customer.
+              config:
+                severity: error
+
+          - relationships:
+              arguments: 
+                to: ref('silver_customers')
+                field: customer_id
+
+      - name: account_id
+        data_tests:
+          - not_null:
+              description: Validates that a loan is associated with an account.
+              config:
+                severity: error
+
+          - relationships:
+              arguments:
+                to: ref('silver_accounts')
+                field: account_id
+
+      - name: loan_reference
+        data_tests:
+          - not_null:
+              description: Validates loan has loan reference to aid tracking.
+              config:
+                severity: error
+
+          - unique:
+              description: Ensures that loan reference is unique.
+              config:
+                severity: error
+
+      - name: loan_type
+        description: Trim whitespaces and ensures standardized formatting.
+        data_tests:
+          - not_null:
+              description: Ensures the type of loan is recorded.
+              config:
+                severity: error
+
+      - name: loan_status
+        description: Trim whitespaces and ensures standardized formatting.
+        data_tests: 
+          - not_null:
+              description: Validates that the status of the loan is provided.
+              config:
+                severity: error
+
+          - accepted_values:
+              description: Ensures that the column contains approved business values.
+              arguments:
+                values: ['Active', 'Paid Off', 'Defaulted']
+                config:
+                  severity: warn
+
+      - name: principal_amount
+        data_tests:
+          - not_null: 
+              description: Ensures that the column is not null.
+              config:
+                severity: error
+
+      - name: interest_rate
+        data_tests:
+          - not_null:
+              description: Validates that interest rate column is not null.
+              config:
+                severity: error
+
+      - name: total_repayable_amount
+        data_tests: 
+          - not_null:
+              description: Validates that the column is not null.
+              config:
+                severity: error
+
+      - name: outstanding_balance
+        data_tests:
+          - not_null:
+              description: Ensures that the column is not null.
+              config:
+                severity: error
+
+      - name: term_months
+        data_tests: 
+          - not_null:
+              description: Ensures that the column is not null.
+              config:
+                severity: error
+
+      - name: approved_at
+        data_tests:
+          - not_null:
+              description: Ensures that date and time of when each loan was approved is recorded.
+              config:
+                severity: error
+
+      - name: disbursed_at
+        data_tests:
+          - not_null:
+              description: Ensures that date and time of when each loan event is recorded.
+              config:
+                severity: error
+
+      - name: maturity_date
+        data_tests:
+          - not_null:
+              description: Validates that date and time of when each loan will mature is recorded.
+              config:
+                severity: error
+
+      - name: created_at
+        data_tests: 
+          - not_null:
+              description: >
+                Validates that date and time of when each loan event is recorded in the operational system.
+              config:
+                severity: error
+
+
+  - name: silver_loan_payments
+    description: Contains cleansed and standardized loan records derived from the bronze layer.
+
+    columns:
+      - name: loan_payment_id
+        description: One row per loan payment id.
+        data_tests:
+          - not_null:
+              description: Ensures that loan payment id not null.
+              config:
+                severity: error
+
+          - unique: 
+              description: Validates that each loan payment id is unique.
+              config:
+                severity: error
+
+      - name: loan_id
+        data_tests:
+          - not_null:
+              description: >
+                Ensures that loan id is not null and also associated with loan_id in the silver_loans model.
+              config:
+                severity: error
+
+          - unique:
+              description: Ensures that each loan id is unique.
+              config:
+                severity: error
+
+          - relationships:
+              arguments:
+                to: ref('silver_loans')
+                field: loan_id
+
+      - name: transaction_id
+        data_tests:
+          - not_null:
+              description: Validates that transaction id is not null.
+              config:
+                severity: error
+
+          - unique:
+              description: Ensures that each transaction id is uniquely linked to loan payment.
+              config:
+                severity: error
+
+          - relationships:
+              arguments:
+                to: ref('siver_transactions')
+                field: transaction_id
+              description: >
+                Ensures that each loan payment can be tracked in the transaction_id in the silver_transaction model.
+
+      - name: payment_reference
+        data_tests:
+          - not_null:
+              description: Validates no empty row(s)
+              config:
+                severity: error
+
+          - unique:
+              description: Ensures uniqueness to aid tracking.
+              config:
+                severity: error
+
+      - name: payment_amount
+        data_tests:
+          - not_null:
+              description: Gauarntees that payment amount is not null.
+              config:
+                severity: error
+
+      - name: principal_amount
+        data_tests: 
+          - not_null: 
+              description: Prevents not null in this column.
+              config:
+                severity: error
+
+      - name: interest_amount
+        data_tests:
+          - not_null:
+              description: Ensures that the columns is not null.
+              config:
+                severity: error
+
+      - name: payment_status
+        data_tests:
+          - not_null:
+              description: Ensures that each loan payment has a status to aid tracking.
+              config:
+                severity: error
+
+          - accepted_values:
+              description: Ensures that the column contains approved business values.
+              arguments:
+                values: ['Processing', 'Pending', 'Completed']
+
+      - name: payment_at
+        data_tests:
+          - not_null: 
+              description: Date and time the loan payment is recorded.
+              config:
+                severity: error
+
+      - name: created_at
+        data_tests:
+          - not_null:
+              description: Date and time the loan payment is recorded in the operational system.
+              config:
+                severity: error
+
+
+
+
+
+
+
+
+
