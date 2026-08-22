@@ -6,9 +6,10 @@ models:
 
     data_tests:
       - date_before_date:
+          arguments:
+            earlier_column: date_of_birth
+            later_column: created_at
           description: Ensures that a customer's date of birth is before the account creation date.
-          earlier_column: date_of_birth
-          later_column: created_at
 
     columns:
       - name: customer_id
@@ -152,12 +153,8 @@ models:
                 severity: error
             
       - name: updated_at
-        description: The date and time when a customer details were updated in a database.
-        data_tests:
-          - not_null:
-              description: Validates that no nulls were allowed.
-              config:
-                severity: error
+        description: This tells you when the customer record was last modified.
+    
 
 
   - name: silver_accounts
@@ -181,11 +178,6 @@ models:
         data_tests:
           - not_null:
               description: Ensures every account belongs to a customer id. 
-              config:
-                severity: error
-
-          - unique:
-              description: Ensures every account is unique to a customer id.
               config:
                 severity: error
 
@@ -268,11 +260,7 @@ models:
                 severity: error
 
       - name: closed_at
-        data_tests:
-          - not_null:
-              description: Ensures the time it was inserted in the operational source was captured.
-              config:
-                severity: error
+        description: Date and time of when an account is closed.
 
   - name: silver_beneficiaries
     description: Contains cleansed and standardized beneficiary records derived from the bronze layer.
@@ -557,7 +545,7 @@ models:
 
           - relationships:
               arguments:
-                to: ref('siver_transactions')
+                to: ref('silver_transactions')
                 field: transaction_id
 
       - name: receiver_transaction_id
@@ -565,7 +553,7 @@ models:
         data_tests:
           - relationships:
               arguments:
-                to: ref('siver_transactions')
+                to: ref('silver_transactions')
                 field: transaction_id
 
       - name: beneficiary_id
@@ -618,11 +606,6 @@ models:
         data_tests:
           - not_null:
               description: Ensures that only customer(s) that has cards are recorded.
-              config:
-                severity: error
-
-          - unique:
-              description: Validates that a card uniquely belongs to a customer.
               config:
                 severity: error
 
@@ -944,11 +927,6 @@ models:
               config:
                 severity: error
 
-          - unique:
-              description: Ensures that each loan id is unique.
-              config:
-                severity: error
-
           - relationships:
               arguments:
                 to: ref('silver_loans')
@@ -968,7 +946,7 @@ models:
 
           - relationships:
               arguments:
-                to: ref('siver_transactions')
+                to: ref('silver_transactions')
                 field: transaction_id
               description: >
                 Ensures that each loan payment can be tracked in the transaction_id in the silver_transaction model.

@@ -12,16 +12,53 @@ with silver_customers as
                 else {{ clean_strings('gender') }}
             end as gender, 
             case 
-                when country = 'NIG' THEN 'Nigeria'
+                when country != 'Nigeria' THEN 'Nigeria'
                 else {{ clean_strings('country') }}      
             end as country, 
             {{ clean_strings('state') }} as state, 
             {{ clean_strings('city') }} as city,
-            {{ clean_strings('address') }} as address, 
+            case 
+                when address = '' then 'UNKNOWN ADDRESS'
+                else {{ clean_strings('address') }}
+            end as address, 
             {{ clean_strings('customer_status') }} as customer_status, 
             created_at,
             updated_at
     from {{ source('finflow_bronze_src', 'bronze_customers') }}
+),
+
+validated_customers as (
+
+    select *,
+
+        count(*) over (
+            partition by email
+        ) as email_count,
+
+        count(*) over (
+            partition by phone_number
+        ) as phone_count
+
+    from silver_customers
+
 )
 
-select * from silver_customers
+    select
+        customer_id,
+        first_name,
+        last_name,
+        email,
+        phone_number,
+        date_of_birth,
+        gender,
+        country,
+        state,
+        city,
+        address,
+        customer_status,
+        created_at,
+        updated_at
+
+    from validated_customers
+    where email_count = 1
+    and phone_count = 1

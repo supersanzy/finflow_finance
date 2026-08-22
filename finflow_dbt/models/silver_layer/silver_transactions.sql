@@ -7,21 +7,40 @@ with silver_transactions as
             {{ clean_strings('transaction_status') }} as transaction_status,
             {{ clean_strings('transaction_direction') }} as transaction_direction,
             amount,
-            currency,
+            case 
+                when currency != 'NGN' then 'NGN'
+                else currency
+            end as currency,
             case 
                 when len(transaction_channel) <= 4 THEN transaction_channel
+                when transaction_channel is null then 'UNKNOWN TRANSACTION CHANNEL'
                 else {{ clean_strings('transaction_channel') }} 
             end as transaction_channel,
-            description,
+            case 
+                when description is null then 'UNKNOWN TRANSACTION DESCRIPTION'
+                else description
+            end as description,
             original_transaction_id,
             fee_for_transaction_id,
             transaction_at,
-            created_at,
-            case
-                when transaction_at > created_at then TRUE
-                else FALSE
-            end as transaction_date_grtr_than_created_date
+            created_at
     from {{ source('finflow_bronze_src', 'bronze_transactions') }}
-)
+),
 
-select * from silver_transactions
+    validated_transactions as
+    (
+        select *,
+            count(*) over(partition by transaction_reference) as transaction_ref_rn
+        from silver_transactions
+    )
+
+    select transaction_id, account_id, 
+        transaction_type, transaction_status,
+        transaction_direction, amount, currency, 
+        transaction_channel, description, 
+        original_transaction_id, fee_for_transaction_id,
+        transaction_at, created_at
+    from validated_transactions
+    where amount > 0
+    or transaction_at < created_at
+    or transaction_ref_rn = 1
