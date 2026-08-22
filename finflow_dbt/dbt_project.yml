@@ -32,5 +32,16 @@ clean-targets:         # directories to be removed by `dbt clean`
 models:
   finflow_dbt:
     # Config indicated by + and applies to all files under models/example/
-    example:
+    silver_layer:
       +materialized: view
+      +schema: silver_layer
+
+    gold_layer:
+      +materialized: table
+      +schema: gold_layer
+
+data_tests:
+  finflow_dbt:
+    +database: '{{target.database}}'
+    +store_failures: true
+    +schema: test_failures
