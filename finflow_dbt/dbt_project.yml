@@ -33,15 +33,18 @@ models:
   finflow_dbt:
     # Config indicated by + and applies to all files under models/example/
     silver_layer:
-      +materialized: view
+      +materialized: table
       +schema: silver_layer
 
     gold_layer:
       +materialized: table
       +schema: gold_layer
 
+    quarantine:
+      +schema: quarantine
+      +materialized: table
+
 data_tests:
   finflow_dbt:
-    +database: '{{target.database}}'
     +store_failures: true
     +schema: test_failures
