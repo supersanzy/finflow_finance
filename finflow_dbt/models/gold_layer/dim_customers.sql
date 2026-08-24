@@ -13,4 +13,4 @@ select  {{ dbt_utils.generate_surrogate_key(['customer_id']) }} as customer_key,
         customer_status,
         created_at,
         updated_at
-from {{ ref('(silver_transactions)') }}
+from {{ ref('silver_customers') }}
