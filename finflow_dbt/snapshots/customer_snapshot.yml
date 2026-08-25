@@ -1,0 +1,9 @@
+snapshots:
+  - name: customer_snapshot
+    description: Preserves customer historyrical data.
+    relation: ref('snapshot_customer')
+    config:
+      unique_key: customer_id
+      strategy: check
+      check_cols: ['last_name', 'email', 'phone_number', 'state', 'city', 'address']
+      hard_deletes: invalidate
