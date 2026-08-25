@@ -1,4 +1,4 @@
-select {{ dbt_utils.generate_surrogate_key(['card_id']) }} as card_key,
+select 
         card_id,
         account_id,
         card_type,
