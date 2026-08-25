@@ -34,7 +34,7 @@ with silver_transactions as
         from silver_transactions
     )
 
-    select transaction_id, account_id, 
+    select transaction_id, account_id, transaction_reference,
         transaction_type, transaction_status,
         transaction_direction, amount, currency, 
         transaction_channel, description, 

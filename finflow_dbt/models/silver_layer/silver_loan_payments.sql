@@ -1,3 +1,4 @@
+
 with silver_loan_payments as
 (
     select loan_payment_id,
