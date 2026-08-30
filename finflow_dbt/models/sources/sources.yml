@@ -19,31 +19,31 @@ sources:
             description: The last name of each customer.
 
           - name: email
-            description: Email of each customer
+            description: Email of each customer.
 
           - name: phone_number
-            description: The phone number of each customer
+            description: The phone number of each customer.
 
           - name: date_of_birth
-            description: Date of birth of a customer
+            description: Date of birth of a customer.
 
           - name: gender
-            description: Gender of each customer
+            description: Gender of each customer.
 
           - name: country
-            description: Full country name of each customer
+            description: Full country name of each customer.
 
           - name: state
-            description: Full state name of each customer
+            description: Full state name of each customer.
 
           - name: city
-            description: City of each customer
+            description: City of each customer.
 
           - name: address
-            description: Address where each customer lives
+            description: Address where each customer lives.
 
           - name: customer_status
-            description: The activity status of each customer
+            description: The activity status of each customer.
 
           - name: created_at
             description: This tells you when the customer record was first created in the operational system.
@@ -284,7 +284,7 @@ sources:
             description: This is the total amount repayable. 
 
           - name: outstanding_balance
-            description: holder
+            description: Outstanding balance of the loan.
 
           - name: term_months
             description: Number of months the loan can stay before payment.
