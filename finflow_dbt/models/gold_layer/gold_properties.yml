@@ -1,0 +1,632 @@
+models:
+  - name: dim_customers
+    description: >
+      Customer dimension containing one record per customer for analytical reporting. 
+      The model assigns a stable surrogate key while preserving the original business key for traceability and downstream joins.
+
+    columns: 
+      - name: customer_key
+        description: >
+         Stable surrogate key generated from customer_id using dbt_utils.generate_surrogate_key.
+        data_tests:
+          - not_null:
+              description: >
+                Ensures every customer record is assigned a surrogate key for reliable joins with downstream fact tables.
+              config:
+                severity: error
+          - unique:
+              description: >
+                Confirms that each surrogate key uniquely identifies a single customer record within the dimension.
+              config:
+                severity: error
+
+      - name: customer_id
+        description: >
+          Original business identifier for the customer retained for traceability and source system reconciliation.
+        
+      - name: first_name
+        description: >
+          Customer's first name inherited from the silver layer after data cleansing and text standardization.
+        data_tests:
+          - not_null:
+              config:
+                severity: error
+
+      - name: last_name
+        description: >
+          Customer's last name inherited from the silver layer after data cleansing and text standardization.
+        data_tests:
+          - not_null:
+              config:
+                severity: error
+
+      - name: email
+        description: Customer's email inherited from the silver layer after data cleansing and text standardization.
+        data_tests:
+          - unique:
+              config:
+                severity: error
+
+          - not_null:
+              config:
+                severity: error
+
+      - name: phone_number
+        description: Phone number of each customer inherited from the silver layer.
+        data_tests:
+          - unique:
+              config:
+                severity: error
+
+          - not_null:
+              config:
+                severity: error
+        
+
+      - name: date_of_birth
+        description: Date of birth of each customer.
+        data_tests:
+          - not_null:
+              config:
+                severity: error
+
+      - name: gender
+        description: >
+          Standardized gender value describing the customer for demographic analysis.
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+
+      - name: country
+        description: >
+          Country where the customer resides, used for geographic reporting and segmentation.
+        data_tests:
+          - not_null:
+              config:
+                severity: error
+
+      - name: state
+        description: >
+          State name associated with the customer's residence.
+        data_tests:
+          - not_null:
+              config:
+                severity: error
+
+      - name: city
+        description: >
+          City where the customer resides after text normalization in the silver layer.
+        data_tests:
+          - not_null:
+              config:
+                severity: error
+
+      - name: address
+        description: >
+          Customer's address inherited from the silver layer after data cleansing and text standardization.
+        data_tests:
+          - not_null:
+              config:
+                severity: error
+
+      - name: customer_status
+        description: >
+          Customer's customer_status inherited from the silver layer after data cleansing and text standardization.
+
+      - name: created_at
+        description: "{{ doc('created_at')}}"
+
+      - name: updated_at
+        description: "{{ doc('updated_at')}}"
+
+
+  - name: dim_accounts
+    description: Dimension for account model.
+
+    columns:
+      - name: account_id
+        description: One row per account. Inherited from the silver layer.
+        data_tests:
+          - not_null:
+              description: Ensures all rows has a unique identifier.
+              config:
+                severity: error
+                
+          - unique:
+              description: Ensures that all account id are unique.
+              config:
+                severity: error
+
+      - name: customer_id
+        description: One account is owned by one customer ID.
+        data_tests:
+          - not_null:
+              config:
+                severity: error
+
+      - name: account_type
+        description: Type of each account.
+
+      - name: account_status
+        description: Status of each account.
+
+      - name: opened_at
+        data_tests:
+          - not_null:
+              config:
+                severity: error
+
+      - name: closed_at
+
+
+  
+  - name: dim_beneficiaries
+    description: Dimension for the beneficiary model inherited from the silver layer.
+
+    columns:
+      - name: beneficiary_id
+        description: Unique identifier for each beneficiary.
+        data_tests:
+          - not_null:
+              config:
+                severity: error
+
+          - unique:
+              config:
+                severity: error
+
+      - name: customer_id
+        description: Each customer that has a beneficiary.
+        data_tests:
+          - not_null:
+              config:
+                severity: error
+
+      - name: beneficiary_name
+        description: >
+          Each beneficiary full name inherited from the silver layer after data cleansing and text standardization.
+        data_tests:
+          - not_null:
+              config:
+                severity: error
+
+      - name: bank_name
+        description: >
+          Each beneficiary bank name inherited from the silver layer.
+        data_tests:
+          - not_null:
+              config:
+                severity: error
+
+      - name: status
+        description: >
+          Each beneficiary account status inherited from the silver layer after data cleansing and text standardization.
+
+      - name: created_at
+        description: placeholder
+
+
+  - name: dim_cards
+    description: Dimension for the card model inherited from the silver layer.
+
+    columns:
+      - name: card_id
+        description: Unique identifier for each card.
+        data_tests:
+          - not_null:
+              config:
+                severity: error
+
+          - unique:
+              config:
+                severity: error
+
+      - name: account_id
+        description: Account id for each card.
+        data_tests:
+          - not_null:
+              config:
+                severity: error
+
+      - name: card_type
+        description: >
+          Card type inherited from the silver layer after data cleansing and text standardization.
+
+      - name: card_status
+        description: >
+          Card status inherited from the silver layer after data cleansing and text standardization.
+
+      - name: issued_at
+        description: Date and time each card was issued.
+        data_tests:
+          - not_null:
+              config:
+                severity: error
+
+      - name: expires_at
+        description: Expiration date of each card.
+
+    
+  - name: dim_loans
+    description: Dimension for the loan model inherited from the silver layer.
+
+    columns:
+      - name: loan_id
+        description: Unique identifier for each loan.
+        data_tests:
+          - not_null:
+              config:
+                severity: error
+
+          - unique:
+              config:
+                severity: error
+
+      - name: customer_id
+        description: Customer ID holding a loan.
+        data_tests:
+          - not_null:
+              config:
+                severity: error
+
+      - name: account_id
+        description: Account ID holding a loan.
+        data_tests:
+          - not_null:
+              config:
+                severity: error
+
+      - name: loan_reference
+        description: Loan reference number.
+        data_tests:
+          - not_null:
+              config:
+                severity: error
+
+      - name: loan_type
+        description: >
+          Loan type inherited from the silver layer after data cleansing and text standardization.
+
+      - name: loan_status
+        description: >
+          Loan ststus inherited from the silver layer after data cleansing and text standardization.
+        data_tests:
+          - not_null:
+              config:
+                severity: error
+
+      - name: principal_amount
+        description: The original amount of the loan.
+        data_tests:
+          - not_null:
+              config:
+                severity: error
+
+      - name: interest_rate
+        description: The interest fee accumulated.
+        data_tests:
+          - not_null:
+              config:
+                severity: error
+
+      - name: total_repayable_amount
+        description: The total amount repayable.
+        data_tests:
+          - not_null:
+              config:
+                severity: error
+
+      - name: outstanding_balance
+        description: Outstanding balance of the loan.
+        data_tests:
+          - not_null:
+              config:
+                severity: error
+
+      - name: term_months
+        description: The number of months each loan can stay.
+        data_tests:
+          - not_null:
+              config:
+                severity: error
+
+      - name: approved_at
+        description: The date and time each loan was approved.
+        data_tests:
+          - not_null:
+              config:
+                severity: error
+
+      - name: disbursed_at
+        description: The time and date each loan was given.
+        data_tests:
+          - not_null:
+              config:
+                severity: error
+
+      - name: maturity_date
+        description: The date and time each loan can stay for.
+        data_tests:
+          - not_null:
+              config:
+                severity: error
+
+      - name: created_at
+        description: The date and time each loan was initiated.
+
+    
+  - name: fact_transactions
+    description: >
+      Fact table containing transactions at the the per row level. Each record represents a single transaction
+      for all the different transaction type.
+
+    columns: 
+      - name: transaction_id
+        description: Unique identifier for each transaction.
+        data_tests:
+          - not_null:
+              config:
+                severity: error
+
+          - unique:
+              config:
+                severity: error
+
+      - name: account_id
+        description: Account ID that initiated the transaction.
+        data_tests:
+          - not_null:
+              config:
+                severity: error
+
+      - name: transaction_reference
+        description: Transaction reference number.
+        data_tests:
+          - not_null:
+              config:
+                severity: error
+
+      - name: transaction_type
+        description: The type of each transaction.
+
+      - name: transaction_status
+        description: The state of each transaction.
+
+      - name: transaction_direction
+        description: placeholder
+
+      - name: amount
+        description: The transaction amount
+        data_tests:
+          - not_null:
+              config:
+                severity: error
+
+
+      - name: transaction_channel
+        description: Shows whether the transaction is a debit or a credit.
+
+      - name: description
+        description: Transactiond description
+
+      - name: original_transaction_id
+        description: Transaction ID for reversal transaction type.
+
+      - name: fee_for_transaction_id
+        description: Transaction ID for fee transaction type.
+
+      - name: transaction_at
+        description: The date and time each transaction was initiated.
+        data_tests:
+          - not_null:
+              config:
+                severity: error
+
+      - name: created_at
+
+
+  - name: fact_transfer
+    description: >
+      Fact table containing TRANSFER - transaction type at the the per row level. Each record represents a single transaction
+      for the transaction type - TRANSFER
+
+    columns:
+      - name: transfer_id
+        description: Unique identifier for each transfer.
+        data_tests:
+          - not_null:
+              config:
+                severity: error
+
+          - unique:
+              config:
+                severity: error
+
+      - name: transfer_reference
+        description: Transfer reference number.
+        data_tests:
+          - not_null:
+              config:
+                severity: error
+
+      - name: sender_transaction_id
+        description: Unique identifier for the transaction ID.
+        data_tests:
+          - not_null:
+              config:
+                severity: error
+
+      - name: receiver_transaction_id
+        description: >
+          Unique identifier for the receiver ID. Transaction between finflow - finflow account.
+
+      - name: beneficiary_id
+        description: Unique identifier for transfer transaction made to a beneficiary.
+
+      - name: sender_account_id
+        description: Account of the initiator of the transfer transaction.
+        data_tests:
+          - not_null:
+              config: 
+                severity: error
+
+      - name: transfer_amount
+        description: The transfer amount.
+        data_tests:
+          - not_null:
+              config:
+                severity: error
+
+      - name: transaction_at
+        description: Date and time of the transaction.
+        data_tests:
+          - not_null:
+              severity: error
+
+
+  - name: fact_loan_payments
+    description: >
+      Fact table containing LOAN PAYMENTS  - transaction type at the the per row level. Each record represents a single transaction
+      for the transaction type - LOAN PAYMENTS.
+
+    columns:
+      - name: loan_payment_id
+        description: Unqiue identifier for each loan payment.
+        data_tests: 
+          - not_null:
+              config:
+                severity: error
+
+          - unique:
+              config:
+                severity: error
+
+      - name: loan_id
+        description: Unique identifier for each loan ID.
+        data_tests:
+          - not_null:
+              config: 
+                severity: error
+
+      - name: account_id
+        description: Unique identifier for each account ID.
+        data_tests:
+          - not_null:
+              config:
+                severity: error
+
+      - name: customer_id
+        description: Unique identifier representing each customer ID.
+        data_tests:
+          - not_null:
+              config:
+                severity: error
+
+      - name: transaction_id
+        description: Unique identifier representing each transaction ID.
+        data_tests:
+          - not_null:
+              config: 
+                severity: error
+
+          - unique:
+              config:
+                severity: error
+
+      - name: principal_amount
+        description: Original amount loaned.
+        data_tests:
+          - not_null:
+              config:
+                severity: error
+              
+
+      - name: interest_rate
+        description: Interest rate for each loan.
+        data_tests:
+          - not_null:
+              config:
+                severity: error
+
+      - name: interest_amount
+        description: Accumulated interest amount.
+
+
+      - name: total_repayable_amount
+        description: The full loan refund amount.
+        data_tests:
+          - not_null:
+              config:
+                severity: error
+
+      - name: loan_status
+        description: The state of the loan.
+        data_tests:
+          - not_null:
+              config:
+                severity: error
+
+      - name: payment_status
+        description: The state of the payment status.
+        data_tests:
+          - not_null:
+              config:
+                severity: error
+
+      - name: payment_at
+        description: Date and time of when the loan payment is initiated.
+
+
+  - name: fact_card_transactions
+    description: >
+      Fact table containing CARD TRANSACTIONS - transaction type at the the per row level. Each record represents a single transaction
+      for the transaction type - CARD TRANSACTIONS .
+
+    columns:
+      - name: card_transaction_id
+        description: Unique identifier for each card transaction.
+        data_tests:
+          - not_null:
+              config:
+                severity: error
+
+          - unique:
+              config:
+                severity: error
+
+      - name: card_id
+        description: Unique identifier representing each loan ID.
+        data_tests:
+          - not_null:
+              config:
+                severity: error
+
+          
+
+      - name: transaction_id
+        description: Unique identifier representing each transaction ID.
+        data_tests:
+          - not_null: 
+              config: 
+                severity: error
+
+          - unique: 
+              config:
+                severity: error
+
+      - name: sender_account_id
+        description: Unique identifier representing each account ID.
+        data_tests:
+          - not_null:
+              config: 
+                severity: error
+
+      - name: transaction_at
+        description: Date and time the transaction was initiated.
+        data_tests:
+          - not_null:
+              config: 
+                severity: error
+
+
