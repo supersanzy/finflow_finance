@@ -145,7 +145,7 @@ models:
                 severity: error
 
       - name: created_at
-        description: The date and time when each customer account was created.
+        description: "{{ doc('created_at')}}"
         data_tests:
           - not_null:
               description: Ensures that each row has a created date and time.
@@ -153,7 +153,7 @@ models:
                 severity: error
             
       - name: updated_at
-        description: This tells you when the customer record was last modified.
+        description: "{{ doc('updated_at')}}"
     
 
 
