@@ -1,0 +1,23 @@
+finflow_dbt:
+  outputs:
+    dev:
+      account: '{{ env_var("SF_ACCOUNT") }}'
+      database: FINFLOW_DEV_DB
+      password: '{{ env_var("FF_USR_PASSWORD") }}'
+      role: '{{ env_var("DBT_D_ROLE") }}'
+      schema: FINFLOW_DEV_SCHEMA
+      threads: 4
+      type: snowflake
+      user: '{{ env_var("FF_USR") }}'
+      warehouse: '{{ env_var("FF_WH") }}'
+    prod:
+      account: '{{ env_var("SF_ACCOUNT") }}'
+      database: FINFLOW_PROD_DB
+      password: '{{ env_var("FF_USR_PASSWORD") }}'
+      role: '{{ env_var("DBT_D_ROLE") }}'
+      schema: FINFLOW_PROD_SCHEMA
+      threads: 8
+      type: snowflake
+      user: '{{ env_var("FF_USR") }}'
+      warehouse: '{{ env_var("FF_WH") }}'
+  target: dev
