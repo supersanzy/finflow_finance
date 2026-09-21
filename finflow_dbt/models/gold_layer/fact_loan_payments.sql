@@ -3,7 +3,7 @@ select
     lp.loan_payment_id,
     lp.loan_id,
     l.account_id,
-    l.customer_id,
+    dc.customer_key,
     lp.transaction_id,
     lp.principal_amount,
     l.interest_rate,
@@ -18,4 +18,6 @@ join {{ ref('silver_loans') }} as l
     on lp.loan_id = l.loan_id
 join {{ ref('silver_transactions') }} as t
     on t.transaction_id = lp.transaction_id
+join {{ ref('dim_customers') }} as dc
+on dc.customer_id = l.customer_id
 where t.transaction_type = 'Loan Payment'

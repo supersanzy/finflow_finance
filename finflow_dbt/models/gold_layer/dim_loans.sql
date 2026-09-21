@@ -1,6 +1,6 @@
 select 
         loan_id,
-        customer_id,
+        customer_key,
         account_id,
         loan_reference,
         loan_type,
@@ -13,5 +13,7 @@ select
         approved_at,
         disbursed_at,
         maturity_date,
-        created_at
-from {{ ref('silver_loans') }}
+        s.created_at
+from {{ ref('silver_loans') }} as s
+join {{ ref('dim_customers')}} as c
+on c.customer_id = s.customer_id

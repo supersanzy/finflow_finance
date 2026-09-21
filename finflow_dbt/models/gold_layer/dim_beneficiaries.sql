@@ -2,6 +2,7 @@ select
         beneficiary_id,
         customer_id,
         beneficiary_name,
+        beneficiary_account,
         bank_name,
         status,
         created_at
