@@ -1,9 +1,9 @@
 snapshots:
   - name: customer_snapshot
-    description: Preserves customer historyrical data.
-    relation: ref('snapshot_customer')
+    description: Preserves customer historical data.
+    relation: source('finflow_bronze_src', 'bronze_customers')
     config:
       unique_key: customer_id
       strategy: check
-      check_cols: ['last_name', 'email', 'phone_number', 'state', 'city', 'address']
+      check_cols: ['last_name', 'email', 'phone_number', 'state', 'city', 'address', 'updated_at']
       hard_deletes: invalidate
